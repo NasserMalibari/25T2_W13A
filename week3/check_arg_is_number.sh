@@ -4,7 +4,8 @@
 
 if [ $# -ne 1 ]
 then
-    echo "wrong num of args! Pls only 1 arg"
+    echo "wrong num of args! Pls only 1 arg" >&2
+    exit 1
 fi
 
 if [ "$1" -eq "$1" ] 2> /dev/null; then
@@ -15,4 +16,8 @@ else
     exit 1
 fi
 
-if echo "$1" | grep -E -q -v '^[0-9]+' ...
+
+# alternative way using grep
+if echo "$1" | grep -E -q -v '^[0-9]+'; then
+    echo "not an integer"
+fi
